@@ -1,0 +1,16 @@
+package com.smartMunicipal.Smart.Municipal.Services.Enums;
+
+public enum DocumentCategory {
+    BIRTH_CERTIFICATE,
+    DEATH_CERTIFICATE,
+    MARRIAGE_CERTIFICATE,
+    PROPERTY_TAX_RECEIPT,
+    BUSINESS_LICENSE,
+    IDENTITY_PROOF,
+    ADDRESS_PROOF,
+    VEHICLE_REGISTRATION,
+    BUILDING_PERMIT,
+    ENVIRONMENTAL_CLEARANCE
+    
+
+}
