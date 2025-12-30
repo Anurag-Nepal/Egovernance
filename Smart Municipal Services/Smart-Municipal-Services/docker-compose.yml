@@ -4,8 +4,10 @@ services:
     container_name: mysql-db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: anurag@#2062
+      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: egovernance
+      MYSQL_USER: root
+      MYSQL_PASSWORD: anurag@#2062
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
@@ -28,10 +30,6 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: anurag@#2062
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_MAIL_HOST: smtp.gmail.com
-      SPRING_MAIL_PORT: 587
-      SPRING_MAIL_USERNAME: pennywisenepal@gmail.com
-      SPRING_MAIL_PASSWORD: isdtzkbxibdmaluv
     depends_on:
       mysql:
         condition: service_healthy
@@ -43,4 +41,4 @@ networks:
     driver: bridge
 
 volumes:
-  mysql-data:as
+  mysql-data:
