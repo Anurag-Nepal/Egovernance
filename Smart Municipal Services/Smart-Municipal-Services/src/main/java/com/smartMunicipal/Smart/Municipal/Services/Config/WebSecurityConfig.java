@@ -66,6 +66,20 @@ public class WebSecurityConfig {
         return config.getAuthenticationManager();
     }
 
+  @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        
+        // Allow all origins
+        configuration.setAllowedOriginPatterns(Arrays.asList("*")); // use patterns instead of setAllowedOrigins
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true); // works with AllowedOriginPatterns
+        
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
 
 
