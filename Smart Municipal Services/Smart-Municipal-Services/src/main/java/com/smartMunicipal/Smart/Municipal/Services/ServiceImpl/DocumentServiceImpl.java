@@ -11,6 +11,7 @@ import com.smartMunicipal.Smart.Municipal.Services.Entity.Document;
 import com.smartMunicipal.Smart.Municipal.Services.Entity.User;
 import com.smartMunicipal.Smart.Municipal.Services.Enums.ApplicationStatus;
 import com.smartMunicipal.Smart.Municipal.Services.Enums.DocumentCategory;
+import com.smartMunicipal.Smart.Municipal.Services.Payload.DocumentDTO;
 import com.smartMunicipal.Smart.Municipal.Services.Payload.DocumentRequest;
 import com.smartMunicipal.Smart.Municipal.Services.Repository.ApplicationRepository;
 import com.smartMunicipal.Smart.Municipal.Services.Repository.DocumentRepository;
@@ -27,6 +28,7 @@ import java.security.MessageDigest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -235,5 +237,13 @@ public class DocumentServiceImpl implements DocumentService {
         } catch (Exception e) {
             throw new RuntimeException("PDF generation failed: " + e.getMessage(), e);
         }
+    }
+
+    @Override
+    public List<DocumentDTO> findAll() {
+        return documentRepository.findAll()
+                .stream()
+                .map(DocumentDTO::fromEntity)
+                .toList();
     }
 }

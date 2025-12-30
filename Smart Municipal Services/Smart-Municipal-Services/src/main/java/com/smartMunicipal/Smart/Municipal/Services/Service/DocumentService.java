@@ -1,7 +1,10 @@
 package com.smartMunicipal.Smart.Municipal.Services.Service;
 
+import com.smartMunicipal.Smart.Municipal.Services.Payload.DocumentDTO;
 import com.smartMunicipal.Smart.Municipal.Services.Payload.DocumentRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public interface DocumentService {
@@ -16,5 +19,8 @@ public interface DocumentService {
 
     //admin method to verify the authenticity of the application and verify the document.
     String verifyApplicationAndIssueDocument(Integer applicationId);
+
+    //get all documents
+    List<DocumentDTO> findAll();
 
 }

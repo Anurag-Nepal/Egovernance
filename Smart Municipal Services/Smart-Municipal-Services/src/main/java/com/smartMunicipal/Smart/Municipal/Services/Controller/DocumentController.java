@@ -1,11 +1,14 @@
 package com.smartMunicipal.Smart.Municipal.Services.Controller;
 
 import com.smartMunicipal.Smart.Municipal.Services.Payload.ApiResponse;
+import com.smartMunicipal.Smart.Municipal.Services.Payload.DocumentDTO;
 import com.smartMunicipal.Smart.Municipal.Services.Payload.DocumentRequest;
 import com.smartMunicipal.Smart.Municipal.Services.Service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/documents")
@@ -55,6 +58,16 @@ public class DocumentController {
     public ResponseEntity<ApiResponse<Void>> issueDocument(@PathVariable Integer applicationId) {
         String message = documentService.verifyApplicationAndIssueDocument(applicationId);
         return ResponseEntity.ok(ApiResponse.success(message));
+    }
+
+    /**
+     * ADMIN ENDPOINT: Get all documents
+     * GET /api/documents
+     */
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<DocumentDTO>>> getAllDocuments() {
+        List<DocumentDTO> documents = documentService.findAll();
+        return ResponseEntity.ok(ApiResponse.success("Documents retrieved successfully", documents));
     }
 
     /**
